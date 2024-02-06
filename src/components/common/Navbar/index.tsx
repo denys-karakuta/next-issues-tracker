@@ -6,7 +6,7 @@ import clsx from 'clsx';
 
 import { BsClipboard2Data } from 'react-icons/bs';
 
-import { NAVIGATION, ROUTES } from '@/constants/routing';
+import { NAVIGATION, ROUTES } from '@/src/constants/routing';
 
 const Navbar: React.FC = () => {
     const currentPath = usePathname();
