@@ -1,4 +1,5 @@
 export const ROUTES = {
+    ISSUES_NEW: '/issues/new',
     ISSUES: '/issues',
     DASHBOARD: '/',
     DEFAULT: '/',
