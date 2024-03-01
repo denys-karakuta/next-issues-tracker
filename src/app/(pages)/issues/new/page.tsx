@@ -4,13 +4,13 @@ import { useRouter } from 'next/navigation';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Button, TextField } from '@radix-ui/themes';
 
-import MarkdownEditorContainer from '@/src/components/common/MarkdownEditorContainer';
+import MarkdownEditorContainer from '@/components/common/MarkdownEditorContainer';
 
-import { createNewIssueRequest } from '@/src/services/api';
+import { createNewIssueRequest } from '@/services/api';
 
-import { ROUTES } from '@/src/constants/routing';
+import { ROUTES } from '@/constants/routing';
 
-import { NewIssueForm } from '@/src/types';
+import { NewIssueForm } from '@/types';
 
 const NewIssuePage = () => {
     const { register, control, handleSubmit } = useForm<NewIssueForm>();

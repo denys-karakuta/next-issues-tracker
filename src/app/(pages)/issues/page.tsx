@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Button } from '@radix-ui/themes';
 
-import { ROUTES } from '@/src/constants/routing';
+import { ROUTES } from '@/constants/routing';
 
 const IssuesPage = () => {
     return (
