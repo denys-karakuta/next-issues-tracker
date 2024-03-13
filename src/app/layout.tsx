@@ -1,6 +1,7 @@
+import type { Metadata } from 'next';
+
 import { Theme } from '@radix-ui/themes';
 import { Inter } from 'next/font/google';
-import type { Metadata } from 'next';
 
 import Navbar from '@/components/common/Navbar';
 
@@ -23,7 +24,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <html lang="en">
             <body className={inter.variable}>
-                <Theme appearance="light" accentColor="ruby">
+                <Theme appearance="light" accentColor="purple">
                     <Navbar />
                     <main className="p-5">{children}</main>
                 </Theme>

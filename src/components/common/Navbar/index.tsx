@@ -1,10 +1,9 @@
 'use client';
-import React from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import clsx from 'clsx';
 
-import { BsClipboard2Data } from 'react-icons/bs';
+import { FaBug } from 'react-icons/fa';
+import clsx from 'clsx';
 
 import { NAVIGATION, ROUTES } from '@/constants/routing';
 
@@ -28,7 +27,7 @@ const Navbar: React.FC = () => {
     return (
         <nav className="flex items-center space-x-7 border-b-2 p-5 mb-5">
             <Link href={ROUTES.DEFAULT} className="text-3xl">
-                <BsClipboard2Data />
+                <FaBug />
             </Link>
 
             <ul className="flex space-x-5">{renderNavigation}</ul>

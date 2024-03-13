@@ -1,10 +1,10 @@
-import React from 'react';
 import Link from 'next/link';
+
 import { Button } from '@radix-ui/themes';
 
 import { ROUTES } from '@/constants/routing';
 
-const IssuesPage = () => {
+const IssuesPage: React.FC = () => {
     return (
         <div>
             <Button size="3">

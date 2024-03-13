@@ -1,6 +1,5 @@
-import React from 'react';
-import { FieldValues } from 'react-hook-form';
 import SimpleMDE from 'react-simplemde-editor';
+import { FieldValues } from 'react-hook-form';
 
 import 'easymde/dist/easymde.min.css';
 
