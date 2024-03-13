@@ -6,7 +6,7 @@ import { Button, TextField } from '@radix-ui/themes';
 
 import MarkdownEditorContainer from '@/components/common/MarkdownEditorContainer';
 
-import { createNewIssueRequest } from '@/services/api';
+import { createNewIssueRequest } from '@/services/api/issues';
 
 import { ROUTES } from '@/constants/routing';
 
