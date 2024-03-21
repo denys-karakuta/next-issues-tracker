@@ -1,24 +1,20 @@
 'use client';
-import { useRouter } from 'next/navigation';
 
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Button, TextField } from '@radix-ui/themes';
 
 import MarkdownEditorContainer from '@/components/common/MarkdownEditorContainer';
 
-import { createNewIssueRequest } from '@/services/api/issues';
-
-import { ROUTES } from '@/constants/routing';
+import useIssuesActions from '@/hooks/useIssuesActions';
 
 import { NewIssueForm } from '@/types';
 
 const NewIssuePage = () => {
     const { register, control, handleSubmit } = useForm<NewIssueForm>();
-    const router = useRouter();
+    const { createNewIssue } = useIssuesActions();
 
     const onSubmit: SubmitHandler<NewIssueForm> = (data) => {
-        createNewIssueRequest({ requestBody: data });
-        router.push(ROUTES.ISSUES);
+        createNewIssue(data);
     };
 
     return (
