@@ -5,6 +5,7 @@ import { Button, TextField, Text } from '@radix-ui/themes';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import MarkdownEditorContainer from '@/components/common/MarkdownEditorContainer';
+import ErrorMessage from '@/components/common/ErrorMessage';
 
 import useIssuesActions from '@/hooks/useIssuesActions';
 
@@ -31,11 +32,7 @@ const NewIssuePage = () => {
                 <TextField.Input placeholder="Title" {...register('title')} />
             </TextField.Root>
 
-            {errors.title ? (
-                <Text color="red" as="p">
-                    {errors.title.message}
-                </Text>
-            ) : null}
+            <ErrorMessage>{errors.title?.message}</ErrorMessage>
 
             <Controller
                 name="description"
@@ -43,11 +40,7 @@ const NewIssuePage = () => {
                 render={({ field }) => <MarkdownEditorContainer placeholder="Description" field={field} />}
             />
 
-            {errors.description ? (
-                <Text color="red" as="p">
-                    {errors.description.message}
-                </Text>
-            ) : null}
+            <ErrorMessage>{errors.description?.message}</ErrorMessage>
 
             <Button size="2">Submit New Issue</Button>
         </form>
