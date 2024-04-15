@@ -1,8 +1,9 @@
 'use client';
 
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { Button, TextField, Text } from '@radix-ui/themes';
+import { Button, TextField } from '@radix-ui/themes';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
 
 import MarkdownEditorContainer from '@/components/common/MarkdownEditorContainer';
 import ErrorMessage from '@/components/common/ErrorMessage';
@@ -10,6 +11,8 @@ import ErrorMessage from '@/components/common/ErrorMessage';
 import useIssuesActions from '@/hooks/useIssuesActions';
 
 import { createIssueSchema } from '@/schemas/issues';
+
+import { ROUTES } from '@/constants/routing';
 
 import { NewIssueForm } from '@/types';
 
@@ -20,10 +23,13 @@ const NewIssuePage = () => {
         handleSubmit,
         formState: { errors },
     } = useForm<NewIssueForm>({ resolver: zodResolver(createIssueSchema) });
+
     const { createNewIssue } = useIssuesActions();
+    const router = useRouter();
 
     const onSubmit: SubmitHandler<NewIssueForm> = (data) => {
         createNewIssue(data);
+        router.push(ROUTES.ISSUES);
     };
 
     return (
