@@ -7,8 +7,10 @@ import { useRouter } from 'next/navigation';
 
 import MarkdownEditorContainer from '@/components/common/MarkdownEditorContainer';
 import ErrorMessage from '@/components/common/ErrorMessage';
+import Spinner from '@/components/common/Spinner';
 
 import useIssuesActions from '@/hooks/useIssuesActions';
+import useLoading from '@/hooks/useLoading';
 
 import { createIssueSchema } from '@/schemas/issues';
 
@@ -24,11 +26,16 @@ const NewIssuePage = () => {
         formState: { errors },
     } = useForm<NewIssueForm>({ resolver: zodResolver(createIssueSchema) });
 
+    const { isLoading, startLoading, stopLoading } = useLoading();
     const { createNewIssue } = useIssuesActions();
+
     const router = useRouter();
 
     const onSubmit: SubmitHandler<NewIssueForm> = (data) => {
+        startLoading();
         createNewIssue(data);
+        stopLoading();
+
         router.push(ROUTES.ISSUES);
     };
 
@@ -48,7 +55,9 @@ const NewIssuePage = () => {
 
             <ErrorMessage>{errors.description?.message}</ErrorMessage>
 
-            <Button size="2">Submit New Issue</Button>
+            <Button size="2" disabled={isLoading}>
+                Submit New Issue {isLoading ? <Spinner /> : null}
+            </Button>
         </form>
     );
 };
