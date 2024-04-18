@@ -1,8 +1,12 @@
+import React from 'react';
+import Link from 'next/link';
 import { Table } from '@radix-ui/themes';
 
 import IssueStatusBadge from '@/components/common/IssueStatusBadge';
 
 import { fetchManyIssues } from '@/services/prisma/issues';
+
+import { ROUTES } from '@/constants/routing';
 
 import IssueActions from './IssueActions';
 
@@ -12,7 +16,7 @@ const IssuesPage: React.FC = async () => {
     const renderIssues = issues.map((issue) => (
         <Table.Row key={issue.id}>
             <Table.Cell>
-                {issue.title}
+                <Link href={`${ROUTES.ISSUES}/${issue.id}`}>{issue.title}</Link>
 
                 <div className="block md:hidden">
                     <IssueStatusBadge status={issue.status} />
