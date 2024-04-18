@@ -1,6 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
+import React from 'react';
 import Link from 'next/link';
 import { FaBug } from 'react-icons/fa';
 import { usePathname } from 'next/navigation';
