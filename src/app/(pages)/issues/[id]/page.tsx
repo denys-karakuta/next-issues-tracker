@@ -1,5 +1,8 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
+import { Heading, Flex, Card, Text } from '@radix-ui/themes';
+
+import IssueStatusBadge from '@/components/common/IssueStatusBadge';
 
 import { fetchIssueById } from '@/services/prisma/issues';
 
@@ -17,12 +20,18 @@ const IssueDetailPage: React.FC<OwnProps> = async (props) => {
     }
 
     return (
-        <div>
-            <p>{issue.title}</p>
-            <p>{issue.description}</p>
-            <p>{issue.status}</p>
-            <p>{issue.createdAt.toDateString()}</p>
-        </div>
+        <>
+            <Heading>{issue.title}</Heading>
+            <Flex className="space-x-3" my="2">
+                <IssueStatusBadge status={issue.status} />
+
+                <Text>{issue.createdAt.toDateString()}</Text>
+            </Flex>
+
+            <Card className="prose max-w-full" mt="4">
+                {issue.description}
+            </Card>
+        </>
     );
 };
 
