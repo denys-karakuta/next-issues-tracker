@@ -1,9 +1,9 @@
 'use client';
-import { usePathname } from 'next/navigation';
-import Link from 'next/link';
 
-import { FaBug } from 'react-icons/fa';
 import clsx from 'clsx';
+import Link from 'next/link';
+import { FaBug } from 'react-icons/fa';
+import { usePathname } from 'next/navigation';
 
 import { NAVIGATION, ROUTES } from '@/constants/routing';
 
