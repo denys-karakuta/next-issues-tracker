@@ -1,12 +1,13 @@
 'use client';
 
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { Button, TextField } from '@radix-ui/themes';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 
-import MarkdownEditorContainer from '@/components/common/MarkdownEditorContainer';
-import ErrorMessage from '@/components/common/ErrorMessage';
+import { Button, TextField } from '@radix-ui/themes';
+
+import MarkdownEditorContainer from '@/components/ui/MarkdownEditorContainer';
+import ErrorMessage from '@/components/ui/ErrorMessage';
 import Spinner from '@/components/common/Spinner';
 
 import useIssuesActions from '@/hooks/useIssuesActions';
