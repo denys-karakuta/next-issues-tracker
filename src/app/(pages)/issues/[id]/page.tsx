@@ -1,5 +1,6 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
+import ReactMarkdown from 'react-markdown';
 import { Heading, Flex, Card, Text } from '@radix-ui/themes';
 
 import IssueStatusBadge from '@/components/common/IssueStatusBadge';
@@ -22,6 +23,7 @@ const IssueDetailPage: React.FC<OwnProps> = async (props) => {
     return (
         <>
             <Heading>{issue.title}</Heading>
+
             <Flex className="space-x-3" my="2">
                 <IssueStatusBadge status={issue.status} />
 
@@ -29,7 +31,7 @@ const IssueDetailPage: React.FC<OwnProps> = async (props) => {
             </Flex>
 
             <Card className="prose max-w-full" mt="4">
-                {issue.description}
+                <ReactMarkdown>{issue.description}</ReactMarkdown>
             </Card>
         </>
     );
