@@ -1,12 +1,12 @@
 'use client';
 
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
 import { Button, TextField } from '@radix-ui/themes';
 
-import MarkdownEditorContainer from '@/components/ui/MarkdownEditorContainer';
 import ErrorMessage from '@/components/ui/ErrorMessage';
 import Spinner from '@/components/common/Spinner';
 
@@ -18,6 +18,8 @@ import { createIssueSchema } from '@/schemas/issues';
 import { ROUTES } from '@/constants/routing';
 
 import { NewIssueForm } from '@/types';
+
+const MarkdownEditorContainer = dynamic(() => import('@/components/ui/MarkdownEditorContainer'), { ssr: false });
 
 const NewIssuePage = () => {
     const {
