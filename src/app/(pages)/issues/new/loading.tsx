@@ -1,9 +1,16 @@
 import React from 'react';
+import { Box } from '@radix-ui/themes';
 
-import Spinner from '@/components/common/Spinner';
+import Skeleton from '@/components/common/Skeleton';
 
-const LoadingNewIssuePage = () => {
-    return <Spinner />;
+const LoadingNewIssuePage: React.FC = () => {
+    return (
+        <Box className="max-w-xl">
+            <Skeleton height="2rem" />
+
+            <Skeleton height="20rem" />
+        </Box>
+    );
 };
 
 export default LoadingNewIssuePage;
