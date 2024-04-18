@@ -4,14 +4,14 @@ import { Table } from '@radix-ui/themes';
 
 import IssueStatusBadge from '@/components/common/IssueStatusBadge';
 
-import { fetchManyIssues } from '@/services/prisma/issues';
+import { fetchIssuesList } from '@/services/prisma/issues';
 
 import { ROUTES } from '@/constants/routing';
 
 import IssueActions from './IssueActions';
 
 const IssuesPage: React.FC = async () => {
-    const issues = await fetchManyIssues();
+    const issues = await fetchIssuesList();
 
     const renderIssues = issues.map((issue) => (
         <Table.Row key={issue.id}>
