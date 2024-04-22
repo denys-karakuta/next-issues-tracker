@@ -1,6 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import { Issue } from '@prisma/client';
 import { useRouter } from 'next/navigation';
 import { Button, TextField } from '@radix-ui/themes';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -20,7 +21,13 @@ import { NewIssueForm } from '@/types';
 
 const MarkdownEditorContainer = dynamic(() => import('@/components/ui/MarkdownEditorContainer'), { ssr: false });
 
-const CreateIssueForm: React.FC = () => {
+type OwnProps = {
+    issue?: Issue;
+};
+
+const IssueForm: React.FC<OwnProps> = (props) => {
+    const { issue } = props;
+
     const {
         control,
         register,
@@ -63,4 +70,4 @@ const CreateIssueForm: React.FC = () => {
     );
 };
 
-export default CreateIssueForm;
+export default IssueForm;

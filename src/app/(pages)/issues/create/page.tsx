@@ -1,9 +1,9 @@
 import React from 'react';
 
-import CreateIssueForm from '@/components/common/CreateIssueForm';
+import IssueForm from '@/components/common/IssueForm';
 
 const CreateIssuePage: React.FC = () => {
-    return <CreateIssueForm />;
+    return <IssueForm />;
 };
 
 export default CreateIssuePage;
