@@ -2,10 +2,9 @@
 
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
+import { Button, TextField } from '@radix-ui/themes';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-
-import { Button, TextField } from '@radix-ui/themes';
 
 import ErrorMessage from '@/components/ui/ErrorMessage';
 import Spinner from '@/components/common/Spinner';
@@ -31,7 +30,6 @@ const NewIssuePage = () => {
 
     const { isLoading, startLoading, stopLoading } = useLoading();
     const { createNewIssue } = useIssuesActions();
-
     const router = useRouter();
 
     const onSubmit: SubmitHandler<NewIssueForm> = (data) => {
