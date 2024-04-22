@@ -8,7 +8,7 @@ const IssueActions = () => {
     return (
         <Flex justify="between" className="mb-5">
             <Button size="3">
-                <Link href={ROUTES.ISSUES_NEW}>New Issue</Link>
+                <Link href={ROUTES.ISSUES_CREATE}>New Issue</Link>
             </Button>
         </Flex>
     );
