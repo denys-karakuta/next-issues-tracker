@@ -50,7 +50,7 @@ const IssueForm: React.FC<OwnProps> = (props) => {
     return (
         <form className="max-w-xl space-y-3" onSubmit={handleSubmit(onSubmit)}>
             <TextField.Root>
-                <TextField.Input placeholder="Title" {...register('title')} />
+                <TextField.Input {...register('title')} defaultValue={issue?.title} placeholder="Title" />
             </TextField.Root>
 
             <ErrorMessage>{errors.title?.message}</ErrorMessage>
@@ -58,6 +58,7 @@ const IssueForm: React.FC<OwnProps> = (props) => {
             <Controller
                 name="description"
                 control={control}
+                defaultValue={issue?.description}
                 render={({ field }) => <MarkdownEditorContainer placeholder="Description" field={field} />}
             />
 
