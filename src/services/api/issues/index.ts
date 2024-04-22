@@ -3,7 +3,7 @@ import { AxiosRequestConfig } from 'axios';
 import api from '@/configs/axios';
 
 export const createIssueRequest = async ({ requestBody }, config?: AxiosRequestConfig) => {
-    return await api.post('v1/issues/create', requestBody, config);
+    return await api.post('v1/issues', requestBody, config);
 };
 
 export const updateIssueRequest = async ({ id, requestBody }, config?: AxiosRequestConfig) => {
