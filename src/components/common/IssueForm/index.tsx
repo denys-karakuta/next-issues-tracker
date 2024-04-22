@@ -17,7 +17,7 @@ import { issueSchema } from '@/schemas/issues';
 
 import { ROUTES } from '@/constants/routing';
 
-import { NewIssueForm } from '@/types';
+import { IssueFormData } from '@/types';
 
 const MarkdownEditorContainer = dynamic(() => import('@/components/ui/MarkdownEditorContainer'), { ssr: false });
 
@@ -33,15 +33,21 @@ const IssueForm: React.FC<OwnProps> = (props) => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<NewIssueForm>({ resolver: zodResolver(issueSchema) });
+    } = useForm<IssueFormData>({ resolver: zodResolver(issueSchema) });
 
     const { isLoading, startLoading, stopLoading } = useLoading();
-    const { createNewIssue } = useIssuesActions();
+    const { createNewIssue, updateIssue } = useIssuesActions();
     const router = useRouter();
 
-    const onSubmit: SubmitHandler<NewIssueForm> = (data) => {
+    const onSubmit: SubmitHandler<IssueFormData> = (data) => {
         startLoading();
-        createNewIssue(data);
+
+        if (issue) {
+            updateIssue(issue.id, data);
+        } else {
+            createNewIssue(data);
+        }
+
         stopLoading();
 
         router.push(ROUTES.ISSUES);

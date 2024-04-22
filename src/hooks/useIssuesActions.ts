@@ -1,15 +1,19 @@
 import * as issuesRequests from '@/services/api/issues';
 
-import { NewIssueForm } from '@/types';
-
-import useAbortController from './useAbortController';
+import { IssueFormData } from '@/types';
 
 const useIssuesActions = () => {
-    const { getAbortControllerSignal } = useAbortController();
-
-    const createNewIssue = async (formData: NewIssueForm) => {
+    const createNewIssue = async (formData: IssueFormData) => {
         try {
-            await issuesRequests.createNewIssueRequest({ requestBody: formData }, { signal: getAbortControllerSignal() });
+            await issuesRequests.createIssueRequest({ requestBody: formData });
+        } catch (error: any) {
+            console.log(error.message);
+        }
+    };
+
+    const updateIssue = async (id: string, formData: IssueFormData) => {
+        try {
+            await issuesRequests.updateIssueRequest({ id, requestBody: formData });
         } catch (error: any) {
             console.log(error.message);
         }
@@ -17,6 +21,7 @@ const useIssuesActions = () => {
 
     return {
         createNewIssue,
+        updateIssue,
     };
 };
 
