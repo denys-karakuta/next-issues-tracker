@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { issueSchema } from '@/schemas/issues';
+import { createIssueRequest } from '@/services/prisma/issues';
 
-import prisma from '@/configs/prisma/client';
+import { issueSchema } from '@/schemas/issues';
 
 export const POST = async (req: NextRequest) => {
     const body = await req.json();
@@ -13,9 +13,7 @@ export const POST = async (req: NextRequest) => {
         return NextResponse.json(validation.error.errors, { status: 400 });
     }
 
-    const newIssue = await prisma.issue.create({
-        data: { title: body.title, description: body.description },
-    });
+    const newIssue = await createIssueRequest(body);
 
     return NextResponse.json(newIssue, { status: 201 });
 };

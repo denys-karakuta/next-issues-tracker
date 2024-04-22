@@ -20,3 +20,7 @@ export const updateIssueByIdRequest = (id: string, data) => {
         data,
     });
 };
+
+export const createIssueRequest = (data) => {
+    return prisma.issue.create({ data });
+};
