@@ -1,8 +1,8 @@
 export const ROUTES = {
     ISSUES_CREATE: '/issues/create',
-    ISSUES_EDIT: '/issues/edit',
     ISSUES: '/issues',
     DASHBOARD: '/',
+    EDIT: '/edit',
     DEFAULT: '/',
 };
 

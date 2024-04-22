@@ -14,7 +14,7 @@ const EditIssueButton: React.FC<OwnProps> = (props) => {
         <Button size="3">
             <HiOutlinePencilSquare size="20" />
 
-            <Link href={`${ROUTES.ISSUES_EDIT}/${issueId}`}>Edit Issue</Link>
+            <Link href={`${ROUTES.ISSUES}/${issueId}/${ROUTES.EDIT}`}>Edit Issue</Link>
         </Button>
     );
 };
