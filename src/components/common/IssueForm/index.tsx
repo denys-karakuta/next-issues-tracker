@@ -71,7 +71,7 @@ const IssueForm: React.FC<OwnProps> = (props) => {
             <ErrorMessage>{errors.description?.message}</ErrorMessage>
 
             <Button size="2" disabled={isLoading}>
-                Submit New Issue {isLoading ? <Spinner /> : null}
+                {issue ? 'Update' : 'Submit'} Issue {isLoading ? <Spinner /> : null}
             </Button>
         </form>
     );
