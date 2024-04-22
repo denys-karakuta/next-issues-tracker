@@ -8,3 +8,11 @@ export const fetchIssueById = (id: string) =>
             id: parseInt(id),
         },
     });
+
+export const updateIssueByIdRequest = (id: string, data) =>
+    prisma.issue.update({
+        where: {
+            id: parseInt(id),
+        },
+        data,
+    });
