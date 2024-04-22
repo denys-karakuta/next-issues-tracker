@@ -22,6 +22,7 @@ axiosInstance.interceptors.response.use(
 // Main api function
 const api = (axios: AxiosInstance) => {
     return {
+        patch: <T>(url: string, body?: unknown, config: AxiosRequestConfig = {}) => axios.patch<T>(url, body, config),
         post: <T>(url: string, body?: unknown, config: AxiosRequestConfig = {}) => axios.post<T>(url, body, config),
         put: <T>(url: string, body?: unknown, config: AxiosRequestConfig = {}) => axios.put<T>(url, body, config),
         delete: <T>(url: string, config: AxiosRequestConfig = {}) => axios.delete<T>(url, config),
