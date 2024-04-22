@@ -13,7 +13,7 @@ import Spinner from '@/components/common/Spinner';
 import useIssuesActions from '@/hooks/useIssuesActions';
 import useLoading from '@/hooks/useLoading';
 
-import { createIssueSchema } from '@/schemas/issues';
+import { issueSchema } from '@/schemas/issues';
 
 import { ROUTES } from '@/constants/routing';
 
@@ -33,7 +33,7 @@ const IssueForm: React.FC<OwnProps> = (props) => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<NewIssueForm>({ resolver: zodResolver(createIssueSchema) });
+    } = useForm<NewIssueForm>({ resolver: zodResolver(issueSchema) });
 
     const { isLoading, startLoading, stopLoading } = useLoading();
     const { createNewIssue } = useIssuesActions();
