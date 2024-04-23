@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@radix-ui/themes';
-import { HiOutlinePencilSquare } from 'react-icons/hi2';
+import { FaRegTrashAlt } from 'react-icons/fa';
 
 type OwnProps = { issueId: number };
 
@@ -9,7 +9,7 @@ const DeleteIssueButton: React.FC<OwnProps> = (props) => {
 
     return (
         <Button size="3" color="red">
-            <HiOutlinePencilSquare size="20" />
+            <FaRegTrashAlt size="18" />
             Delete Issue
         </Button>
     );
