@@ -16,7 +16,7 @@ const IssuesPage: React.FC = async () => {
     const renderIssues = issues.map((issue) => (
         <Table.Row key={issue.id}>
             <Table.Cell>
-                <Link href={`${ROUTES.ISSUES}/${issue.id}`}>{issue.title}</Link>
+                <Link href={`/${ROUTES.ISSUES}/${issue.id}`}>{issue.title}</Link>
 
                 <div className="block md:hidden">
                     <IssueStatusBadge status={issue.status} />

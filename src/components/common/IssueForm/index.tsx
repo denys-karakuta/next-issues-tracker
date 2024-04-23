@@ -48,7 +48,7 @@ const IssueForm: React.FC<OwnProps> = (props) => {
 
         stopLoading();
 
-        router.push(ROUTES.ISSUES);
+        router.push(`/${ROUTES.ISSUES_CREATE}`);
         router.refresh();
     };
 
