@@ -51,6 +51,7 @@ const IssueForm: React.FC<OwnProps> = (props) => {
         stopLoading();
 
         router.push(ROUTES.ISSUES);
+        router.refresh();
     };
 
     return (
