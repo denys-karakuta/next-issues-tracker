@@ -1,12 +1,12 @@
 'use client';
 
-import dynamic from 'next/dynamic';
 import { Issue } from '@prisma/client';
 import { useRouter } from 'next/navigation';
 import { Button, TextField } from '@radix-ui/themes';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
+import MarkdownEditorContainer from '@/components/ui/MarkdownEditorContainer';
 import ErrorMessage from '@/components/ui/ErrorMessage';
 import Spinner from '@/components/common/Spinner';
 
@@ -18,8 +18,6 @@ import { issueSchema } from '@/schemas/issues';
 import { ROUTES } from '@/constants/routing';
 
 import { IssueFormData } from '@/types';
-
-const MarkdownEditorContainer = dynamic(() => import('@/components/ui/MarkdownEditorContainer'), { ssr: false });
 
 type OwnProps = {
     issue?: Issue;

@@ -1,9 +1,12 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
 import { notFound } from 'next/navigation';
 
 import { fetchIssueById } from '@/services/prisma/issues';
 
-import IssueForm from '@/components/common/IssueForm';
+import IssueFormSkeleton from './loading';
+
+const IssueForm = dynamic(() => import('@/components/common/IssueForm'), { ssr: false, loading: () => <IssueFormSkeleton /> });
 
 type OwnProps = {
     params: { id: string };
