@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { fetchIssueById, updateIssueByIdRequest } from '@/services/prisma/issues';
+import { deleteIssueRequest, fetchIssueById, updateIssueByIdRequest } from '@/services/prisma/issues';
 
 import { issueSchema } from '@/schemas/issues';
 
@@ -22,4 +22,16 @@ export const PATCH = async (req: NextRequest, { params }: { params: { id: string
     const updatedIssue = await updateIssueByIdRequest(issue.id, body);
 
     return NextResponse.json(updatedIssue);
+};
+
+export const DELETE = async (req: NextRequest, { params }: { params: { id: string } }) => {
+    const issue = await fetchIssueById(params.id);
+
+    if (!issue) {
+        return NextResponse.json({ error: 'Invalid issue' }, { status: 404 });
+    }
+
+    await deleteIssueRequest(issue.id);
+
+    return NextResponse.json({});
 };
