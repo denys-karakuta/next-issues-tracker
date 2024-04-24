@@ -42,13 +42,13 @@ const IssueForm: React.FC<OwnProps> = (props) => {
 
         if (issue) {
             updateIssueAction(issue.id, data);
+            router.push(`/${ROUTES.ISSUES}`);
         } else {
             createIssueAction(data);
+            router.push(`/${ROUTES.ISSUES_CREATE}`);
         }
 
         stopLoading();
-
-        router.push(`/${ROUTES.ISSUES_CREATE}`);
         router.refresh();
     };
 
@@ -69,7 +69,7 @@ const IssueForm: React.FC<OwnProps> = (props) => {
 
             <ErrorMessage>{errors.description?.message}</ErrorMessage>
 
-            <Button size="2" disabled={isLoading}>
+            <Button size="3" disabled={isLoading}>
                 {issue ? 'Update' : 'Submit'} Issue {isLoading ? <Spinner /> : null}
             </Button>
         </form>
