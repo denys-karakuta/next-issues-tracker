@@ -19,9 +19,18 @@ const useIssuesActions = () => {
         }
     };
 
+    const deleteIssue = async (id: number) => {
+        try {
+            await issuesRequests.deleteIssueRequest({ id });
+        } catch (error: any) {
+            console.log(error.message);
+        }
+    };
+
     return {
         createNewIssue,
         updateIssue,
+        deleteIssue,
     };
 };
 
