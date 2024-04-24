@@ -33,17 +33,17 @@ const IssueForm: React.FC<OwnProps> = (props) => {
         formState: { errors },
     } = useForm<IssueFormData>({ resolver: zodResolver(issueSchema) });
 
+    const { createIssueAction, updateIssueAction } = useIssuesActions();
     const { isLoading, startLoading, stopLoading } = useLoading();
-    const { createNewIssue, updateIssue } = useIssuesActions();
     const router = useRouter();
 
     const onSubmit: SubmitHandler<IssueFormData> = (data) => {
         startLoading();
 
         if (issue) {
-            updateIssue(issue.id, data);
+            updateIssueAction(issue.id, data);
         } else {
-            createNewIssue(data);
+            createIssueAction(data);
         }
 
         stopLoading();

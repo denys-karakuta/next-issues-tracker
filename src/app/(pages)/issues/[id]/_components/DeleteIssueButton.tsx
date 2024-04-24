@@ -17,7 +17,7 @@ const DeleteIssueButton: React.FC<OwnProps> = (props) => {
     const { issueId } = props;
 
     const { isLoading, startLoading, stopLoading } = useLoading();
-    const { deleteIssue } = useIssuesActions();
+    const { deleteIssueAction } = useIssuesActions();
     const [error, setError] = useState(false);
     const router = useRouter();
 
@@ -25,7 +25,7 @@ const DeleteIssueButton: React.FC<OwnProps> = (props) => {
         try {
             startLoading();
 
-            deleteIssue(issueId);
+            deleteIssueAction(issueId);
 
             router.push(`/${ROUTES.ISSUES}`);
             router.refresh();

@@ -3,7 +3,7 @@ import * as issuesRequests from '@/services/axios/issues';
 import { IssueFormData } from '@/types';
 
 const useIssuesActions = () => {
-    const createNewIssue = async (formData: IssueFormData) => {
+    const createIssueAction = async (formData: IssueFormData) => {
         try {
             await issuesRequests.createIssueRequest({ requestBody: formData });
         } catch (error: any) {
@@ -11,7 +11,7 @@ const useIssuesActions = () => {
         }
     };
 
-    const updateIssue = async (id: string, formData: IssueFormData) => {
+    const updateIssueAction = async (id: number, formData: IssueFormData) => {
         try {
             await issuesRequests.updateIssueRequest({ id, requestBody: formData });
         } catch (error: any) {
@@ -19,7 +19,7 @@ const useIssuesActions = () => {
         }
     };
 
-    const deleteIssue = async (id: number) => {
+    const deleteIssueAction = async (id: number) => {
         try {
             await issuesRequests.deleteIssueRequest({ id });
         } catch (error: any) {
@@ -28,9 +28,9 @@ const useIssuesActions = () => {
     };
 
     return {
-        createNewIssue,
-        updateIssue,
-        deleteIssue,
+        createIssueAction,
+        updateIssueAction,
+        deleteIssueAction,
     };
 };
 
