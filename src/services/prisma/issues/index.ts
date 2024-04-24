@@ -24,3 +24,11 @@ export const updateIssueByIdRequest = (id: string, data) => {
 export const createIssueRequest = (data) => {
     return prisma.issue.create({ data });
 };
+
+export const deleteIssueRequest = (id: string) => {
+    return prisma.issue.delete({
+        where: {
+            id: parseInt(id),
+        },
+    });
+};
