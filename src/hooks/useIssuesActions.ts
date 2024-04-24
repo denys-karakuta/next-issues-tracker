@@ -1,4 +1,4 @@
-import * as issuesRequests from '@/services/api/issues';
+import * as issuesRequests from '@/services/axios/issues';
 
 import { IssueFormData } from '@/types';
 
