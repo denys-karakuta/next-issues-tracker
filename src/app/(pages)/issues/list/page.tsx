@@ -1,29 +1,33 @@
+import React from 'react';
 import { Table } from '@radix-ui/themes';
 
-import Skeleton from '@/components/common/Skeleton';
+import IssueStatusBadge from '@/components/common/IssueStatusBadge';
+import Link from '@/components/common/Link';
 
-import IssueActions from './_components/IssueActions';
+import { fetchIssuesList } from '@/services/prisma/issues';
 
-const LoadingIssuesPage = () => {
-    const issues = [1, 2, 3, 4, 5];
+import { ROUTES } from '@/constants/routing';
+
+import IssueActions from '../_components/IssueActions';
+
+const IssuesPage: React.FC = async () => {
+    const issues = await fetchIssuesList();
 
     const renderIssues = issues.map((issue) => (
-        <Table.Row key={issue}>
+        <Table.Row key={issue.id}>
             <Table.Cell>
-                <Skeleton />
+                <Link href={`/${ROUTES.ISSUES_VIEW}/${issue.id}`}>{issue.title}</Link>
 
                 <div className="block md:hidden">
-                    <Skeleton />
+                    <IssueStatusBadge status={issue.status} />
                 </div>
             </Table.Cell>
 
             <Table.Cell className="hidden md:table-cell">
-                <Skeleton />
+                <IssueStatusBadge status={issue.status} />
             </Table.Cell>
 
-            <Table.Cell className="hidden md:table-cell">
-                <Skeleton />
-            </Table.Cell>
+            <Table.Cell className="hidden md:table-cell">{issue.createdAt.toDateString()}</Table.Cell>
         </Table.Row>
     ));
 
@@ -48,4 +52,4 @@ const LoadingIssuesPage = () => {
     );
 };
 
-export default LoadingIssuesPage;
+export default IssuesPage;

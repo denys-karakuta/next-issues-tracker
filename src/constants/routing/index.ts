@@ -1,12 +1,14 @@
 export const ROUTES = {
     ISSUES_CREATE: 'issues/create',
+    ISSUES_LIST: 'issues/list',
+    ISSUES_EDIT: 'issues/edit',
+    ISSUES_VIEW: 'issues/view',
     ISSUES: 'issues',
     DASHBOARD: '/',
-    EDIT: 'edit',
     DEFAULT: '/',
 };
 
 export const NAVIGATION = [
     { label: 'Dashboard', href: `${ROUTES.DASHBOARD}` },
-    { label: 'Issues', href: `/${ROUTES.ISSUES}` },
+    { label: 'Issues', href: `/${ROUTES.ISSUES_LIST}` },
 ];

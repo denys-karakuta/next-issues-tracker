@@ -27,7 +27,7 @@ const DeleteIssueButton: React.FC<OwnProps> = (props) => {
 
             deleteIssueAction(issueId);
 
-            router.push(`/${ROUTES.ISSUES}`);
+            router.push(`/${ROUTES.ISSUES_LIST}`);
             router.refresh();
         } catch (error) {
             setError(true);

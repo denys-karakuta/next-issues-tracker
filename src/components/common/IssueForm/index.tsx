@@ -42,7 +42,7 @@ const IssueForm: React.FC<OwnProps> = (props) => {
 
         if (issue) {
             updateIssueAction(issue.id, data);
-            router.push(`/${ROUTES.ISSUES}`);
+            router.push(`/${ROUTES.ISSUES_LIST}`);
         } else {
             createIssueAction(data);
             router.push(`/${ROUTES.ISSUES_CREATE}`);
