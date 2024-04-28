@@ -8,7 +8,10 @@ import { usePathname } from 'next/navigation';
 
 import { NAVIGATION, ROUTES } from '@/constants/routing';
 
+import useSessionState from '@/hooks/useSessionState';
+
 const Navbar: React.FC = () => {
+    const { isAuthenticated, isUnauthenticated } = useSessionState();
     const currentPath = usePathname();
 
     const renderNavigation = NAVIGATION.map((link) => {
@@ -32,6 +35,10 @@ const Navbar: React.FC = () => {
             </Link>
 
             <ul className="flex space-x-5">{renderNavigation}</ul>
+
+            {isAuthenticated ? <Link href="/api/auth/signout">Log out</Link> : null}
+
+            {isUnauthenticated ? <Link href="/api/auth/signin">Login</Link> : null}
         </nav>
     );
 };
