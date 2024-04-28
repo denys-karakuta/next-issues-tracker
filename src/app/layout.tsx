@@ -9,6 +9,8 @@ import '@radix-ui/themes/styles.css';
 import '@/assets/styles/theme-config.css';
 import '@/assets/styles/globals.css';
 
+import AuthProvider from './auth/Provider';
+
 const inter = Inter({
     subsets: ['latin'],
     display: 'swap',
@@ -24,13 +26,15 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <html lang="en">
             <body className={inter.variable}>
-                <Theme appearance="light" accentColor="purple">
-                    <Navbar />
+                <AuthProvider>
+                    <Theme appearance="light" accentColor="purple">
+                        <Navbar />
 
-                    <main className="p-5">
-                        <Container>{children}</Container>
-                    </main>
-                </Theme>
+                        <main className="p-5">
+                            <Container>{children}</Container>
+                        </main>
+                    </Theme>
+                </AuthProvider>
             </body>
         </html>
     );
