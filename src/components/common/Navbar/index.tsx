@@ -1,44 +1,31 @@
 'use client';
 
-import clsx from 'clsx';
 import React from 'react';
 import Link from 'next/link';
 import { FaBug } from 'react-icons/fa';
-import { usePathname } from 'next/navigation';
+import { Container, Flex } from '@radix-ui/themes';
 
-import { NAVIGATION, ROUTES } from '@/constants/routing';
+import { ROUTES } from '@/constants/routing';
 
-import useSessionState from '@/hooks/useSessionState';
+import AuthStatus from './components/AuthStatus';
+import NavLinks from './components/NavLinks';
 
 const Navbar: React.FC = () => {
-    const { isAuthenticated, isUnauthenticated } = useSessionState();
-    const currentPath = usePathname();
-
-    const renderNavigation = NAVIGATION.map((link) => {
-        const linkClassNames = clsx('transition-colors text-zinc-500 hover:text-zinc-900', {
-            'text-zinc-900 font-medium': currentPath === link.href,
-        });
-
-        return (
-            <li key={link.href}>
-                <Link href={link.href} className={linkClassNames}>
-                    {link.label}
-                </Link>
-            </li>
-        );
-    });
-
     return (
-        <nav className="flex items-center space-x-7 border-b-2 p-5 mb-5">
-            <Link href={ROUTES.DEFAULT} className="text-3xl">
-                <FaBug />
-            </Link>
+        <nav className="border-b mb-5 py-3">
+            <Container>
+                <Flex justify="between">
+                    <Flex align="center" gap="5">
+                        <Link href={ROUTES.DEFAULT} className="text-3xl">
+                            <FaBug />
+                        </Link>
 
-            <ul className="flex space-x-5">{renderNavigation}</ul>
+                        <NavLinks />
+                    </Flex>
 
-            {isAuthenticated ? <Link href="/api/auth/signout">Log out</Link> : null}
-
-            {isUnauthenticated ? <Link href="/api/auth/signin">Login</Link> : null}
+                    <AuthStatus />
+                </Flex>
+            </Container>
         </nav>
     );
 };
