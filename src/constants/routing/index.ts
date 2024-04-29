@@ -12,3 +12,8 @@ export const NAVIGATION = [
     { label: 'Dashboard', href: `${ROUTES.DASHBOARD}` },
     { label: 'Issues', href: `/${ROUTES.ISSUES_LIST}` },
 ];
+
+export const API_AUTH_ROUTES = {
+    LOGOUT: '/api/auth/signout',
+    LOGIN: '/api/auth/signin',
+};
