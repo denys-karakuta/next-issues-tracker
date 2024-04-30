@@ -12,7 +12,7 @@ const AuthStatus: React.FC = () => {
     const { isUnauthenticated, isLoading, session } = useSessionState();
 
     if (isLoading) {
-        return <Skeleton width="3rem" />;
+        return <Skeleton width="2rem" height="2rem" borderRadius={100} />;
     }
 
     if (isUnauthenticated)

@@ -12,7 +12,7 @@ import NavLinks from './components/NavLinks';
 
 const Navbar: React.FC = () => {
     return (
-        <nav className="border-b mb-5 py-3">
+        <nav className="border-b mb-5 py-4">
             <Container>
                 <Flex justify="between">
                     <Flex align="center" gap="5">
