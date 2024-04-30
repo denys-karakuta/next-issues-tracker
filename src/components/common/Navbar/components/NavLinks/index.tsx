@@ -9,9 +9,7 @@ const NavLinks: React.FC = () => {
     const currentPath = usePathname();
 
     const renderNavigationLinks = NAVIGATION.map((link) => {
-        const linkClassNames = clsx('transition-colors text-zinc-500 hover:text-zinc-900', {
-            'text-zinc-900 font-medium': currentPath === link.href,
-        });
+        const linkClassNames = clsx('nav-link', { 'font-medium': currentPath === link.href });
 
         return (
             <li key={link.href}>
