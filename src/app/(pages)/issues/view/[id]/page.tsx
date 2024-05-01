@@ -9,6 +9,7 @@ import { fetchIssueById } from '@/services/prisma/issues';
 
 import DeleteIssueButton from './_components/DeleteIssueButton';
 import EditIssueButton from './_components/EditIssueButton';
+import AssigneeSelect from './_components/AssigneeSelect';
 import EditIssueInfo from './_components/EditIssueInfo';
 
 type OwnProps = {
@@ -35,6 +36,8 @@ const IssueViewPage: React.FC<OwnProps> = async (props) => {
             {session ? (
                 <Box>
                     <Flex direction="column" gap="4">
+                        <AssigneeSelect />
+
                         <EditIssueButton issueId={issue.id} />
 
                         <DeleteIssueButton issueId={issue.id} />
