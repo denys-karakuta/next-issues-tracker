@@ -12,7 +12,7 @@ type OwnProps = {
     params: { id: string };
 };
 
-const IssueDetailPage: React.FC<OwnProps> = async (props) => {
+const IssueViewPage: React.FC<OwnProps> = async (props) => {
     const { params } = props;
 
     const issue = await fetchIssueById(params.id);
@@ -38,4 +38,4 @@ const IssueDetailPage: React.FC<OwnProps> = async (props) => {
     );
 };
 
-export default IssueDetailPage;
+export default IssueViewPage;
