@@ -3,13 +3,13 @@ import type { Metadata } from 'next';
 import { Container, Theme } from '@radix-ui/themes';
 import { Inter } from 'next/font/google';
 
+import AuthProvider from '@/providers/AuthProvider';
+
 import Navbar from '@/components/common/Navbar';
 
 import '@radix-ui/themes/styles.css';
 import '@/assets/styles/theme-config.css';
 import '@/assets/styles/globals.css';
-
-import AuthProvider from './api/v1/auth/Provider';
 
 const inter = Inter({
     subsets: ['latin'],
