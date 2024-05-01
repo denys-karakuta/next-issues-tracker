@@ -1,6 +1,9 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
+import { getServerSession } from 'next-auth';
 import { Box, Flex, Grid } from '@radix-ui/themes';
+
+import authOptions from '@/app/auth/authOptions';
 
 import { fetchIssueById } from '@/services/prisma/issues';
 
@@ -15,6 +18,8 @@ type OwnProps = {
 const IssueViewPage: React.FC<OwnProps> = async (props) => {
     const { params } = props;
 
+    const session = await getServerSession(authOptions);
+
     const issue = await fetchIssueById(params.id);
 
     if (!issue) {
@@ -27,13 +32,15 @@ const IssueViewPage: React.FC<OwnProps> = async (props) => {
                 <EditIssueInfo issue={issue} />
             </Box>
 
-            <Box>
-                <Flex direction="column" gap="4">
-                    <EditIssueButton issueId={issue.id} />
+            {session ? (
+                <Box>
+                    <Flex direction="column" gap="4">
+                        <EditIssueButton issueId={issue.id} />
 
-                    <DeleteIssueButton issueId={issue.id} />
-                </Flex>
-            </Box>
+                        <DeleteIssueButton issueId={issue.id} />
+                    </Flex>
+                </Box>
+            ) : null}
         </Grid>
     );
 };

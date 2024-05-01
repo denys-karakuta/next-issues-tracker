@@ -1,10 +1,19 @@
+import { getServerSession } from 'next-auth';
 import { NextRequest, NextResponse } from 'next/server';
 
 import { deleteIssueRequest, fetchIssueById, updateIssueByIdRequest } from '@/services/prisma/issues';
 
+import authOptions from '@/app/auth/authOptions';
+
 import { issueSchema } from '@/schemas/issues';
 
 export const PATCH = async (req: NextRequest, { params }: { params: { id: string } }) => {
+    const session = await getServerSession(authOptions);
+
+    if (!session) {
+        return NextResponse.json({}, { status: 401 });
+    }
+
     const body = await req.json();
 
     const validation = issueSchema.safeParse(body);
@@ -25,6 +34,12 @@ export const PATCH = async (req: NextRequest, { params }: { params: { id: string
 };
 
 export const DELETE = async (req: NextRequest, { params }: { params: { id: string } }) => {
+    const session = await getServerSession(authOptions);
+
+    if (!session) {
+        return NextResponse.json({}, { status: 401 });
+    }
+
     const issue = await fetchIssueById(params.id);
 
     if (!issue) {
