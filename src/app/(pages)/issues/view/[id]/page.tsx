@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { getServerSession } from 'next-auth';
 import { Box, Flex, Grid } from '@radix-ui/themes';
 
-import authOptions from '@/app/auth/authOptions';
+import authOptions from '@/app/api/v1/auth/authOptions';
 
 import { fetchIssueById } from '@/services/prisma/issues';
 

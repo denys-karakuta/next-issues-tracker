@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import { createIssueRequest } from '@/services/prisma/issues';
 
-import authOptions from '@/app/auth/authOptions';
+import authOptions from '@/app/api/v1/auth/authOptions';
 
 import { issueSchema } from '@/schemas/issues';
 

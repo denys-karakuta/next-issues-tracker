@@ -9,7 +9,7 @@ import '@radix-ui/themes/styles.css';
 import '@/assets/styles/theme-config.css';
 import '@/assets/styles/globals.css';
 
-import AuthProvider from './auth/Provider';
+import AuthProvider from './api/v1/auth/Provider';
 
 const inter = Inter({
     subsets: ['latin'],
