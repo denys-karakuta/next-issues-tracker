@@ -1,20 +1,24 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { User } from '@prisma/client';
+import React from 'react';
 import { Select } from '@radix-ui/themes';
 
-import useUsersActions from '@/hooks/useUsersActions';
+import useUsersState from '@/hooks/useUsersState';
+
+import Skeleton from '@/components/common/Skeleton';
 
 const AssigneeSelect: React.FC = () => {
-    const { getUsersAction } = useUsersActions();
-    const [users, setUsers] = useState<User>([]);
+    const { usersQuery } = useUsersState();
 
-    useEffect(() => {
-        getUsersAction().then((data) => setUsers(data));
-    }, []);
+    if (usersQuery.isLoading) {
+        return <Skeleton height="40px" />;
+    }
 
-    const renderUsers = users?.map((user) => (
+    if (usersQuery.error) {
+        return null;
+    }
+
+    const renderUsers = usersQuery.data?.map((user) => (
         <Select.Item key={user.id} value={user.id}>
             {user.name}
         </Select.Item>
