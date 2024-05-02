@@ -1,20 +1,23 @@
-import { useQuery } from '@tanstack/react-query';
+import { User } from '@prisma/client';
+import { QueryFunction, useQuery } from '@tanstack/react-query';
 
 import useUsersActions from './useUsersActions';
 
 const useUsersState = () => {
     const { getUsersAction } = useUsersActions();
 
-    const usersQuery = useQuery<any>({
+    const {
+        data: users,
+        isError,
+        isLoading,
+    } = useQuery<User[]>({
         queryKey: ['users'],
-        queryFn: getUsersAction,
+        queryFn: getUsersAction as QueryFunction<User[]>,
         staleTime: 60 * 1000, // 60s
         retry: 3,
     });
 
-    return {
-        usersQuery,
-    };
+    return { users, isError, isLoading };
 };
 
 export default useUsersState;

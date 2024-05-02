@@ -8,17 +8,17 @@ import useUsersState from '@/hooks/useUsersState';
 import Skeleton from '@/components/common/Skeleton';
 
 const AssigneeSelect: React.FC = () => {
-    const { usersQuery } = useUsersState();
+    const { users, isError, isLoading } = useUsersState();
 
-    if (usersQuery.isLoading) {
+    if (isLoading) {
         return <Skeleton height="40px" />;
     }
 
-    if (usersQuery.error) {
+    if (isError) {
         return null;
     }
 
-    const renderUsers = usersQuery.data?.map((user) => (
+    const renderUsers = users?.map((user) => (
         <Select.Item key={user.id} value={user.id}>
             {user.name}
         </Select.Item>
