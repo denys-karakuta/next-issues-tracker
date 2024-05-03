@@ -36,7 +36,7 @@ const IssueViewPage: React.FC<OwnProps> = async (props) => {
             {session ? (
                 <Box>
                     <Flex direction="column" gap="4">
-                        <AssigneeSelect />
+                        <AssigneeSelect issue={issue} />
 
                         <EditIssueButton issueId={issue.id} />
 
