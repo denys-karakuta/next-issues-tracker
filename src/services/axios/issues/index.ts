@@ -13,3 +13,7 @@ export const updateIssueRequest = async ({ id, requestBody }, config?: AxiosRequ
 export const deleteIssueRequest = async ({ id }, config?: AxiosRequestConfig) => {
     return await api.delete(`v1/issues/${id}`, config);
 };
+
+export const patchIssueRequest = async ({ id, requestBody }, config?: AxiosRequestConfig) => {
+    return await api.patch(`v1/issues/${id}`, requestBody, config);
+};
