@@ -1,3 +1,5 @@
+import { Issue } from '@prisma/client';
+
 import * as issuesRequests from '@/services/axios/issues';
 
 import { IssueFormData } from '@/types';
@@ -27,10 +29,19 @@ const useIssuesActions = () => {
         }
     };
 
+    const patchIssueAction = async (id: number, requestBody: { assignedToUserId: Issue['assignedToUserId'] }) => {
+        try {
+            await issuesRequests.patchIssueRequest({ id, requestBody });
+        } catch (error: any) {
+            console.log(error.message);
+        }
+    };
+
     return {
         createIssueAction,
         updateIssueAction,
         deleteIssueAction,
+        patchIssueAction,
     };
 };
 
