@@ -8,7 +8,7 @@ import { fetchIssuesList } from '@/services/prisma/issues';
 
 import { ROUTES } from '@/constants/routing';
 
-import IssueActions from '../_components/IssueActions';
+import IssueActions from './_components/IssueActions';
 
 const IssuesPage: React.FC = async () => {
     const issues = await fetchIssuesList();
