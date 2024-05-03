@@ -2,10 +2,11 @@ import { getServerSession } from 'next-auth';
 import { NextRequest, NextResponse } from 'next/server';
 
 import { deleteIssueRequest, fetchIssueById, updateIssueByIdRequest } from '@/services/prisma/issues';
+import { fetchUserById } from '@/services/prisma/users';
 
 import authOptions from '@/app/api/v1/auth/authOptions';
 
-import { issueSchema } from '@/schemas/issues';
+import { patchIssueSchema } from '@/schemas/issues';
 
 export const PATCH = async (req: NextRequest, { params }: { params: { id: string } }) => {
     const session = await getServerSession(authOptions);
@@ -16,10 +17,20 @@ export const PATCH = async (req: NextRequest, { params }: { params: { id: string
 
     const body = await req.json();
 
-    const validation = issueSchema.safeParse(body);
+    const validation = patchIssueSchema.safeParse(body);
 
     if (!validation.success) {
         return NextResponse.json(validation.error.format(), { status: 400 });
+    }
+
+    const { assignedToUserId } = body;
+
+    if (assignedToUserId) {
+        const user = await fetchUserById(assignedToUserId);
+
+        if (!user) {
+            return NextResponse.json({ error: 'Invalid user' }, { status: 400 });
+        }
     }
 
     const issue = await fetchIssueById(params.id);
