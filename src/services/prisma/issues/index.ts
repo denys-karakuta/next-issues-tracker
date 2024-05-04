@@ -1,7 +1,9 @@
+import { Prisma } from '@prisma/client';
+
 import prisma from '@/configs/prisma/client';
 
-export const fetchIssuesList = () => {
-    return prisma.issue.findMany();
+export const fetchIssuesList = (args?: Prisma.IssueFindManyArgs) => {
+    return prisma.issue.findMany(args);
 };
 
 export const fetchIssueById = (id: string) => {
