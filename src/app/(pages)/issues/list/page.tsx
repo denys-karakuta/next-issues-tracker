@@ -1,4 +1,5 @@
 import React from 'react';
+import { Status } from '@prisma/client';
 import { Table } from '@radix-ui/themes';
 
 import IssueStatusBadge from '@/components/common/IssueStatusBadge';
@@ -10,8 +11,14 @@ import { ROUTES } from '@/constants/routing';
 
 import IssueActions from './_components/IssueActions';
 
-const IssuesPage: React.FC = async () => {
-    const issues = await fetchIssuesList();
+type OwnProps = {
+    searchParams: { status: Status };
+};
+
+const IssuesPage: React.FC<OwnProps> = async (props) => {
+    const { searchParams } = props;
+
+    const issues = await fetchIssuesList({ where: { status: searchParams.status || undefined } });
 
     const renderIssues = issues.map((issue) => (
         <Table.Row key={issue.id}>

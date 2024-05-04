@@ -10,11 +10,11 @@ const IssuesStatusFilter: React.FC = () => {
     const searchParams = useSearchParams();
     const router = useRouter();
 
-    const handleValueChange = (status) => {
+    const handleValueChange = (status: string) => {
         const params = new URLSearchParams();
 
         if (status) {
-            params.append('status', status);
+            params.append('status', status === 'default' ? '' : status);
         }
 
         if (searchParams.get('orderBy')) {
@@ -27,7 +27,7 @@ const IssuesStatusFilter: React.FC = () => {
     };
 
     const renderIssuesFilterOptions = ISSUES_FILTER_OPTIONS.map((status) => (
-        <Select.Item key={status.value} value={status.value || ''}>
+        <Select.Item key={status.value} value={status.value || 'default'}>
             {status.label}
         </Select.Item>
     ));
