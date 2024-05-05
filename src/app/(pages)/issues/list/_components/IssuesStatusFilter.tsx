@@ -5,6 +5,7 @@ import { Select } from '@radix-ui/themes';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 import { ISSUES_FILTER_OPTIONS } from '@/constants/issue';
+import { ROUTES } from '@/constants/routing';
 
 const IssuesStatusFilter: React.FC = () => {
     const searchParams = useSearchParams();
@@ -23,7 +24,7 @@ const IssuesStatusFilter: React.FC = () => {
 
         const query = params.size ? '?' + params.toString() : '';
 
-        router.push('/issues/list' + query);
+        router.push(`/${ROUTES.ISSUES_LIST}` + query);
     };
 
     const renderIssuesFilterOptions = ISSUES_FILTER_OPTIONS.map((status) => (
