@@ -1,7 +1,13 @@
 import React from 'react';
 
+import LatestIssues from './_components/LatestIssues';
+
 const HomePage: React.FC = () => {
-    return <div>Home page</div>;
+    return (
+        <>
+            <LatestIssues />
+        </>
+    );
 };
 
 export default HomePage;
