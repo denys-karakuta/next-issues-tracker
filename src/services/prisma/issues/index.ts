@@ -14,6 +14,10 @@ export const fetchIssueById = (id: string) => {
     });
 };
 
+export const fetchIssuesCount = (args?: Prisma.IssueCountArgs) => {
+    return prisma.issue.count(args);
+};
+
 export const updateIssueByIdRequest = (id: string, data) => {
     return prisma.issue.update({
         where: {
