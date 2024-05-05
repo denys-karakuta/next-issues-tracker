@@ -7,11 +7,12 @@ import { LuArrowUpAZ } from 'react-icons/lu';
 import IssueStatusBadge from '@/components/common/IssueStatusBadge';
 import Link from '@/components/common/Link';
 
-import { fetchIssuesList } from '@/services/prisma/issues';
+import { fetchIssuesCount, fetchIssuesList } from '@/services/prisma/issues';
 
 import { ROUTES } from '@/constants/routing';
 
 import IssueActions from './_components/IssueActions';
+import Pagination from '@/components/common/Pagination';
 
 const columns = [
     { label: 'Issue', value: 'title' },
@@ -28,7 +29,11 @@ const columns = [
 ] as const;
 
 type OwnProps = {
-    searchParams: { status: Status; orderBy: 'status' | 'title' | 'createdAt' };
+    searchParams: {
+        orderBy: 'status' | 'title' | 'createdAt';
+        status: Status;
+        page: string;
+    };
 };
 
 const IssuesPage: React.FC<OwnProps> = async (props) => {
@@ -36,8 +41,12 @@ const IssuesPage: React.FC<OwnProps> = async (props) => {
 
     const status = Object.values(Status).includes(searchParams.status) ? searchParams.status : undefined;
     const orderBy = columns.map((column) => column.value).includes(searchParams.orderBy) ? { [searchParams.orderBy]: 'asc' } : undefined;
+    const page = parseInt(searchParams.page) || 1;
+    const pageSize = 10;
 
-    const issues = await fetchIssuesList({ where: { status }, orderBy });
+    const issues = await fetchIssuesList({ where: { status }, orderBy, skip: (page - 1) * pageSize, take: pageSize });
+
+    const issuesCount = await fetchIssuesCount({ where: { status } });
 
     const renderColumns = (
         <Table.Row>
@@ -78,6 +87,8 @@ const IssuesPage: React.FC<OwnProps> = async (props) => {
 
                 <Table.Body>{renderIssues}</Table.Body>
             </Table.Root>
+
+            <Pagination pageSize={pageSize} currentPage={page} itemsCount={issuesCount} />
         </>
     );
 };
