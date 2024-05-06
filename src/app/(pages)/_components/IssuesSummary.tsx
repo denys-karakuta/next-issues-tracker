@@ -2,14 +2,16 @@ import React from 'react';
 import Link from 'next/link';
 import { Card, Flex, Text } from '@radix-ui/themes';
 
-import { fetchIssuesCount } from '@/services/prisma/issues';
-
 import { ROUTES } from '@/constants/routing';
 
-const IssuesSummary: React.FC = async () => {
-    const inProgress = await fetchIssuesCount({ where: { status: 'IN_PROGRESS' } });
-    const closed = await fetchIssuesCount({ where: { status: 'CLOSED' } });
-    const open = await fetchIssuesCount({ where: { status: 'OPEN' } });
+type OwnProps = {
+    inProgress: number;
+    closed: number;
+    open: number;
+};
+
+const IssuesSummary: React.FC<OwnProps> = async (props) => {
+    const { open, inProgress, closed } = props;
 
     const containers = [
         { label: 'Open Issues', value: open, status: 'OPEN' },
@@ -29,6 +31,7 @@ const IssuesSummary: React.FC = async () => {
                         <Link className="text-sm font-medium" href={`/${ROUTES.ISSUES_LIST}?status=${container.status}`}>
                             {container.label}
                         </Link>
+
                         <Text size="5" className="font-bold">
                             {container.value}
                         </Text>
