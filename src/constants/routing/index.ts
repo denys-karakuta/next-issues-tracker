@@ -14,6 +14,6 @@ export const NAVIGATION = [
 ];
 
 export const API_AUTH_ROUTES = {
-    LOGOUT: '/api/v1/auth/signout',
-    LOGIN: '/api/v1/auth/signin',
+    LOGOUT: '/api/auth/signout',
+    LOGIN: '/api/auth/signin',
 };

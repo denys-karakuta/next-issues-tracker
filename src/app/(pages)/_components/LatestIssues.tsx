@@ -12,9 +12,7 @@ const LatestIssues = async () => {
     const issues = await fetchIssuesList({
         orderBy: { createdAt: 'desc' },
         take: 10,
-        include: {
-            assignedToUser: true,
-        },
+        include: { assignedToUser: true },
     });
 
     const renderIssues = issues.map((issue) => (

@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { deleteIssueRequest, fetchIssueById, updateIssueByIdRequest } from '@/services/prisma/issues';
 import { fetchUserById } from '@/services/prisma/users';
 
-import authOptions from '@/app/api/v1/auth/authOptions';
+import authOptions from '@/app/api/auth/authOptions';
 
 import { patchIssueSchema } from '@/schemas/issues';
 

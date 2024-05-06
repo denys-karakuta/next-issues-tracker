@@ -27,8 +27,8 @@ const IssuesStatusFilter: React.FC = () => {
         router.push(`/${ROUTES.ISSUES_LIST}` + query);
     };
 
-    const renderIssuesFilterOptions = ISSUES_FILTER_OPTIONS.map((status) => (
-        <Select.Item key={status.value} value={status.value || 'default'}>
+    const renderIssuesFilterOptions = ISSUES_FILTER_OPTIONS.map((status, idx) => (
+        <Select.Item key={idx} value={status.value || 'default'}>
             {status.label}
         </Select.Item>
     ));
